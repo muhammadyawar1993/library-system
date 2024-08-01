@@ -23,10 +23,10 @@ This project is a Spring Boot-based library management system that provides APIs
 
 ### Installation
 1. Clone the repository:
-   \`\`sh
+   sh
    git clone https://github.com/yourusername/library-system.git
    cd library-system
-   \`\`
+   
 
 2. Configure the database:
    - Update the \`application.properties\` file with your database settings:
