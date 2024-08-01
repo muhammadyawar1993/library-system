@@ -23,144 +23,145 @@ This project is a Spring Boot-based library management system that provides APIs
 
 ### Installation
 1. Clone the repository:
-   sh
+   ```sh
    git clone https://github.com/yourusername/library-system.git
    cd library-system
-   
+   ```
 
 2. Configure the database:
-   - Update the \`application.properties\` file with your database settings:
-     \`\`\`properties
-     spring.datasource.url=jdbc:postgresql://localhost:5432/yourdatabase
-     spring.datasource.username=yourusername
-     spring.datasource.password=yourpassword
-     spring.jpa.hibernate.ddl-auto=update
-     \`\`\`
+   - Update the **application.yml** file with your database settings:
+     ```yaml
+     spring:
+       datasource:
+        url: jdbc:postgresql://localhost:5432/<your_db>?currentSchema=<your_schema>
+        username: <your_username>
+        password: <your_password>
+        driver-class-name: org.postgresql.Driver
 
 3. Build the project:
-   \`\`\`sh
+   ```sh
    mvn clean install
-   \`\`\`
+   ```
 
 ## Running the Application
 Run the application using the following command:
-\`\`\`sh
+```sh
 mvn spring-boot:run
-\`\`\`
-The application will start on the default port \`8282\`.
+```
+The application will start on the default port `8282`.
 
 ## API Documentation
 
 ### Accessing Swagger UI
 Swagger UI provides a user-friendly interface for accessing the API documentation:
-\`\`\`
+```
 http://localhost:8282/swagger-ui/index.html
-\`\`\`
+```
 
 ### Downloading API Documentation
 You can download the OpenAPI documentation in JSON or YAML format:
-- JSON: \`http://localhost:8282/v3/api-docs\`
-- YAML: \`http://localhost:8282/v3/api-docs.yaml\`
+- JSON: `http://localhost:8282/v3/api-docs`
+- YAML: `http://localhost:8282/v3/api-docs.yaml`
 
 ## Using the API
 
 ### Books
 
 #### Register a Book
-- **URL:** \`/api/books\`
-- **Method:** \`POST\`
+- **URL:** `/api/books`
+- **Method:** `POST`
 - **Request Body:**
-  \`\`\`json
+  ```json
   {
     "title": "Book Title",
     "author": "Author Name",
     "isbn": "ISBN-123456"
   }
-  \`\`\`
+  ```
 - **Responses:**
-  - \`200 OK\`: Book registered successfully
-  - \`400 Bad Request\`: Invalid input
-  - \`500 Internal Server Error\`: Internal server error
+  - `200 OK`: Book registered successfully
+  - `400 Bad Request`: Invalid input
+  - `500 Internal Server Error`: Internal server error
 
 #### Get All Books
-- **URL:** \`/api/books\`
-- **Method:** \`GET\`
+- **URL:** `/api/books`
+- **Method:** `GET`
 - **Responses:**
-  - \`200 OK\`: Books retrieved successfully
-  - \`500 Internal Server Error\`: Internal server error
+  - `200 OK`: Books retrieved successfully
+  - `500 Internal Server Error`: Internal server error
 
 ### Borrowers
 
 #### Register a Borrower
-- **URL:** \`/api/borrowers\`
-- **Method:** \`POST\`
+- **URL:** `/api/borrowers`
+- **Method:** `POST`
 - **Request Body:**
-  \`\`\`json
+  ```json
   {
     "name": "Borrower Name",
     "email": "borrower@example.com"
   }
-  \`\`\`
+  ```
 - **Responses:**
-  - \`200 OK\`: Borrower registered successfully
-  - \`400 Bad Request\`: Invalid input
-  - \`500 Internal Server Error\`: Internal server error
+  - `200 OK`: Borrower registered successfully
+  - `400 Bad Request`: Invalid input
+  - `500 Internal Server Error`: Internal server error
 
 #### Get All Borrowers
-- **URL:** \`/api/borrowers\`
-- **Method:** \`GET\`
+- **URL:** `/api/borrowers`
+- **Method:** `GET`
 - **Responses:**
-  - \`200 OK\`: Borrowers retrieved successfully
-  - \`500 Internal Server Error\`: Internal server error
+  - `200 OK`: Borrowers retrieved successfully
+  - `500 Internal Server Error`: Internal server error
 
 ### Loans
 
 #### Borrow a Book
-- **URL:** \`/api/loans/borrow\`
-- **Method:** \`POST\`
+- **URL:** `/api/loans/borrow`
+- **Method:** `POST`
 - **Parameters:**
-  - \`borrowerId\` (Long): ID of the borrower
-  - \`bookId\` (Long): ID of the book
+  - `borrowerId` (Long): ID of the borrower
+  - `bookId` (Long): ID of the book
 - **Responses:**
-  - \`200 OK\`: Book borrowed successfully
-  - \`400 Bad Request\`: Invalid input
-  - \`404 Not Found\`: Borrower or book not found
-  - \`500 Internal Server Error\`: Internal server error
+  - `200 OK`: Book borrowed successfully
+  - `400 Bad Request`: Invalid input
+  - `404 Not Found`: Borrower or book not found
+  - `500 Internal Server Error`: Internal server error
 
 #### Return a Book
-- **URL:** \`/api/loans/return\`
-- **Method:** \`POST\`
+- **URL:** `/api/loans/return`
+- **Method:** `POST`
 - **Parameters:**
-  - \`loanId\` (Long): ID of the loan
+  - `loanId` (Long): ID of the loan
 - **Responses:**
-  - \`200 OK\`: Book returned successfully
-  - \`400 Bad Request\`: Invalid input
-  - \`404 Not Found\`: Loan not found
-  - \`500 Internal Server Error\`: Internal server error
+  - `200 OK`: Book returned successfully
+  - `400 Bad Request`: Invalid input
+  - `404 Not Found`: Loan not found
+  - `500 Internal Server Error`: Internal server error
 
 #### Get Borrowed Books by Borrower ID
-- **URL:** \`/api/loans/borrowed-books/{borrowerId}\`
-- **Method:** \`GET\`
+- **URL:** `/api/loans/borrowed-books/{borrowerId}`
+- **Method:** `GET`
 - **Responses:**
-  - \`200 OK\`: Books retrieved successfully
-  - \`404 Not Found\`: Borrower not found
-  - \`500 Internal Server Error\`: Internal server error
+  - `200 OK`: Books retrieved successfully
+  - `404 Not Found`: Borrower not found
+  - `500 Internal Server Error`: Internal server error
 
 #### Get Returned Books by Borrower ID
-- **URL:** \`/api/loans/returned-books/{borrowerId}\`
-- **Method:** \`GET\`
+- **URL:** `/api/loans/returned-books/{borrowerId}`
+- **Method:** `GET`
 - **Responses:**
-  - \`200 OK\`: Books retrieved successfully
-  - \`404 Not Found\`: Borrower not found
-  - \`500 Internal Server Error\`: Internal server error
+  - `200 OK`: Books retrieved successfully
+  - `404 Not Found`: Borrower not found
+  - `500 Internal Server Error`: Internal server error
 
 ## Testing
 
 ### Running Unit Tests
 To run the unit tests, use the following command:
-\`\`\`sh
+```sh
 mvn test
-\`\`\`
+```
 
 ## Contributing
 Contributions are welcome! Please open an issue or submit a pull request on GitHub.
