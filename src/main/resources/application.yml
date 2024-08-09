@@ -1,0 +1,10 @@
+server:
+  port: 8282
+
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/postgres?currentSchema=library
+    username: postgres
+    password: root
+    driver-class-name: org.postgresql.Driver
